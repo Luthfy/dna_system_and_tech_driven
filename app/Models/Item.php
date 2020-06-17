@@ -31,7 +31,7 @@ class Item extends Model
         return $this->select(
             'nm_item_inventory',
             'selling_price_item_inventory',
-            DB::raw('count(nm_item_inventory) as stock'),
+            DB::raw('count(nm_item_inventory) as stock')
         )
         ->distinct('nm_item_inventory')
         ->groupBy('nm_item_inventory')
