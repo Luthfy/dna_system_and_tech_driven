@@ -1,23 +1,23 @@
 @extends('layouts.admin')
 
-@section('title', 'Dashboard')
+@section('title', 'DASHBOARD')
 
 @section('content_header')
-    <h1 class="h1">Dashboard</h1>
+    <h1 class="h1">DASHBOARD</h1>
     <hr>
 @stop
 
 @section('content')
     {{--  Card  --}}
-    <div class="row">
+    <div class="row mb-5">
         <!-- /.col -->
         <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="info-box">
-              <span class="info-box-icon bg-red"><i class="fa fa-google-plus"></i></span>
+              <span class="info-box-icon bg-red"><i class="fas fa-warehouse"></i></span>
   
               <div class="info-box-content">
-                <span class="info-box-text">Likes</span>
-                <span class="info-box-number">41,410</span>
+                <span class="info-box-text">Supplier</span>
+                <span class="info-box-number">25</span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -25,11 +25,11 @@
           </div>
           <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="info-box">
-              <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
+              <span class="info-box-icon bg-info"><i class="fas fa-boxes"></i></span>
   
               <div class="info-box-content">
-                <span class="info-box-text">CPU Traffic</span>
-                <span class="info-box-number">90<small>%</small></span>
+                <span class="info-box-text">Produk</span>
+                <span class="info-box-number">90 / 32 </span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -41,11 +41,11 @@
   
           <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="info-box">
-              <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
+              <span class="info-box-icon bg-green"><i class="fas fa-receipt"></i></span>
   
               <div class="info-box-content">
-                <span class="info-box-text">Sales</span>
-                <span class="info-box-number">760</span>
+                <span class="info-box-text">Sales ({{ \Carbon\Carbon::now()->format('yy-m-d') }})</span>
+                <span class="info-box-number">Rp. 0000 / 702 </span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -54,10 +54,10 @@
           <!-- /.col -->
           <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="info-box">
-              <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
+              <span class="info-box-icon bg-yellow"><i class="fas fa-users" style="color: whitesmoke"></i></span>
   
               <div class="info-box-content">
-                <span class="info-box-text">New Members</span>
+                <span class="info-box-text">Customer Registered</span>
                 <span class="info-box-number">2,000</span>
               </div>
               <!-- /.info-box-content -->
@@ -68,29 +68,13 @@
         
     </div>
 
-    <div class="row">
+    <div class="row mb-5">
 
         <div class="col-md-12">
             <div class="box">
               <div class="box-header with-border">
-                <h3 class="box-title">Monthly Recap Report</h3>
-  
-                <div class="box-tools pull-right">
-                  <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                  </button>
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown">
-                      <i class="fa fa-wrench"></i></button>
-                    <ul class="dropdown-menu" role="menu">
-                      <li><a href="#">Action</a></li>
-                      <li><a href="#">Another action</a></li>
-                      <li><a href="#">Something else here</a></li>
-                      <li class="divider"></li>
-                      <li><a href="#">Separated link</a></li>
-                    </ul>
-                  </div>
-                  <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                </div>
+                <h3 class="box-title mb-1">Monthly Recapitulation Report</h3>
+ 
               </div>
               <!-- /.box-header -->
               <div class="box-body">
@@ -201,7 +185,6 @@
           <!-- /.col -->
         
     </div>
-
 @stop
 
 @section('js')

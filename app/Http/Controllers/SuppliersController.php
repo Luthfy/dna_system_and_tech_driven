@@ -60,7 +60,7 @@ class SuppliersController extends Controller
     public function update(Request $request, $id)
     {
         $store = $request->validate([
-            'name_supplier' => 'required|unique:suppliers',
+            'name_supplier' => 'required',
         ]);
 
         $supplier = Supplier::find($id);

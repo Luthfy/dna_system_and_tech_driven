@@ -1,6 +1,6 @@
 @extends("adminlte::page")
 
-@section('mycss')
+@section('load_css')
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.0.3/css/buttons.dataTables.min.css">
 <style>
     .nav-sidebar .nav-header {

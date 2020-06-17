@@ -16,7 +16,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row">
-                        <img src="{{ asset("images/entry_notes_dummy.png") }}" alt="entry notes picture" class="mt-1 round dummy">
+                        <img src="{{ asset(($entry_note->picture_entry_note == '' || $entry_note->picture_entry_note == null) ? 'images/entry_notes_dummy.png' : 'storage/nota_masuk/'.$entry_note->picture_entry_note ) }}" alt="entry notes picture" class="mt-1 round dummy">
                         <div class="col ml-3">
                             <table class="table mb-0">
                                 <tr>

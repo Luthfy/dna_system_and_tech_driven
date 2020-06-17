@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use Ramsey\Uuid\Uuid;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Intervention\Image\ImageManagerStatic as Image;
+use Illuminate\Support\Facades\Storage;
 
 class EntryNotesController extends Controller
 {
@@ -52,6 +54,22 @@ class EntryNotesController extends Controller
             'status_entry_note' => 'required'
         ]);
 
+        if ($request->hasFile('picture_entry_note'))
+        {
+            $image      = $request->file('picture_entry_note');
+            $filename   = time().'.'.$image->getClientOriginalExtension();
+
+            $img        = Image::make($image->getRealPath());
+
+            $img->resize(300, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+
+            $img->stream();
+
+            Storage::disk('local')->put('public/nota_masuk'.'/'.$filename, $img, 'public');
+        }
+
         $entryNote = new EntryNotes;
         $entryNote->uuid_entry_note     = Uuid::uuid1()->getHex();
         $entryNote->no_entry_note       = $request->no_entry_note;
@@ -60,6 +78,7 @@ class EntryNotesController extends Controller
         $entryNote->total_entry_note    = $request->total_entry_note;
         $entryNote->status_entry_note   = $request->status_entry_note;
         $entryNote->uuid_supplier       = $request->uuid_supplier;
+        $entryNote->picture_entry_note  = ($request->file('picture_entry_note') == null) ? null : $filename ;
         $entryNote->id_user             = Auth::id();
         $entryNote->save();
 

@@ -44,7 +44,8 @@ class EntryNotesDataTable extends DataTable
                         <a href='/admin/entry-note/$entry_notes->uuid_entry_note/edit' class='btn btn-success btn-sm' onclick='editForm()'><i class='fas fa-edit'></i></a>
                         <a href='#' class='btn btn-danger btn-sm' onclick='deleteSupplier()'><i class='fas fa-trash'></i></a>
                     </div>";
-            });
+            })
+            ->rawColumns(['status_entry_note', 'action']);
     }
 
     public function query(EntryNotes $model)
@@ -93,28 +94,28 @@ class EntryNotesDataTable extends DataTable
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
-                ->addClass('text-center'),
+                ->addClass('text-center align-middle'),
             Column::computed('no_entry_note')
                 ->title('No Nota')
-                ->addClass('text-center'),
+                ->addClass('text-center align-middle'),
             Column::computed('date_entry_note')
                 ->title('Tanggal Nota')
-                ->addClass('text-center'),
+                ->addClass('text-center align-middle'),
             Column::make('total_entry_note')
                 ->title('Total')
-                ->addClass('text-center'),
+                ->addClass('text-right align-middle'),
             Column::computed('status_entry_note')
                 ->title('Pembayaran')
-                ->addClass('text-center'),
+                ->addClass('text-center align-middle'),
             Column::computed('uuid_supplier')
                 ->title('Supplier')
-                ->addClass('text-center'),
+                ->addClass('text-center align-middle'),
             Column::make('id_user')
                 ->title('User')
-                ->addClass('text-center'),
+                ->addClass('text-center align-middle'),
             Column::computed('updated_at')
                 ->title('diperbarui')
-                ->addClass('text-center'),
+                ->addClass('text-center align-middle'),
             
         ];
     }

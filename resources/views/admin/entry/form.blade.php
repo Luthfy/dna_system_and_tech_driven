@@ -62,7 +62,7 @@
 
                     <div class="form-group">
                         {!! Form::label('picture_entry_note', 'Foto Nota Masuk') !!} <br>
-                        {!! Form::file('picture_entry_note') !!}
+                        {!! Form::file('picture_entry_note', ["accept"=>"image/*"]) !!}
                     </div>
                     
                     <div class="form-group text-right">

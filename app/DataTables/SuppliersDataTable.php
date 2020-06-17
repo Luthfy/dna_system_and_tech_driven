@@ -61,7 +61,6 @@ class SuppliersDataTable extends DataTable
             ->buttons(
                 Button::make('create'),
                 Button::make('excel'),
-                Button::make('pdf'),
                 Button::make('print'),
                 Button::make('reload')
             );
@@ -77,20 +76,22 @@ class SuppliersDataTable extends DataTable
                 ->orderable(false)
                 ->addClass('text-center'),
             Column::make('name_supplier')
-                ->title('Nama Supplier'),
+                ->title('Nama Supplier')
+                ->addClass('align-middle'),
             Column::make('address_supplier')
-                ->title('Alamat Supplier'),
+                ->title('Alamat Supplier')
+                ->addClass('align-middle'),
             Column::make('phone_supplier')
                 ->title('Kontak')
-                ->addClass('text-center'),
+                ->addClass('text-center align-middle'),
             Column::computed('user')
-                ->addClass('text-center'),
+                ->addClass('text-center align-middle'),
             Column::computed('created_at')
                 ->title('didaftarkan')
-                ->addClass('text-center'),
+                ->addClass('text-center align-middle'),
             Column::computed('updated_at')
                 ->title('diperbarui')
-                ->addClass('text-center'),
+                ->addClass('text-center align-middle'),
         ];
     }
 

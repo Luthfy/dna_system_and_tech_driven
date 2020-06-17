@@ -14,7 +14,7 @@
             <div class="card">
                 <div class="card-body">
 
-                    @if (($supplier->uuid_supplier ?? '') == '')
+                    @if (($supplier ?? '') == '')
                         {!! Form::open(['url' => 'admin/supplier', 'method' => 'post']) !!}
                     @else
                         {!! Form::model($supplier, ['url'=>'admin/supplier/'.$supplier->uuid_supplier, 'method' => 'PUT']) !!}    
