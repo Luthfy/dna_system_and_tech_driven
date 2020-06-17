@@ -22,6 +22,7 @@ class Item extends Model
         'id_category',
         'uuid_entry_note',
         'id_user',
+        'notes_item_inventory',
         'picture_item_inventory'
     ];
 

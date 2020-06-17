@@ -37,6 +37,8 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('entry-note/{id}', 'EntryNotesController@show')->name('entrynote.show');
     Route::get('entry-note/{id}/edit', 'EntryNotesController@edit')->name('entrynote.edit');
     Route::post('/entry-note', 'EntryNotesController@store')->name('entrynote.store');
+    Route::put('/entry-note/{id}', 'EntryNotesController@update')->name('entrynote.update');
+    Route::delete('/entry-note/{id}', 'EntryNotesController@destroy')->name('entrynote.destroy');
 
     /* ROUTE ITEM ITEMS */
     Route::get('/items', 'ItemsController@index')->name('item');
@@ -46,6 +48,9 @@ Route::group(['prefix' => 'admin'], function () {
 
     /* ROUTE ITEM INVENTORY */
     Route::get('/inventory', 'ItemsController@inventory')->name('inventory');
+    Route::get('/inventory/{id}', 'ItemsController@show')->name('item.show');
+    Route::get('/inventory/{id}/edit', 'ItemsController@edit')->name('item.edit');
+    Route::put('/inventory/{id}', 'ItemsController@update')->name('item.update');
 
     /* ROUTE CATEGORY */
     Route::resource('/category', 'CategoryController')->names('category');

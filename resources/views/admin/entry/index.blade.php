@@ -27,10 +27,10 @@
 
 @section('css')
     <style>
-        #entry_table_info {
+        #entry_notes_table_info {
             display: inline-block;
         }
-        #entry_table_paginate {
+        #entry_notes_table_paginate {
             display: inline-block;
             float:right;
         }
@@ -47,5 +47,34 @@
 @stop
 
 @section('js_datatables')
+<script>
+    function deleteEntryNote(id)
+    {
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        if (confirm("anda yakin ingin menghapus nota masuk ini?"))
+        {
+            $.ajax({
+                type : "DELETE",
+                url : "entry-note/"+id,
+                success : function(data, status) {
+                    alert(data);
+                    console.log(data)
+                    location.reload()
+                },
+                error : function (xhr) {
+                    alert('gagal dihapus')
+                }
+            });
+        }
+
+        return null;
+    }
+</script>
     {!! $dataTable->scripts() !!}
 @stop

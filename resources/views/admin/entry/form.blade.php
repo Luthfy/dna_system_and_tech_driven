@@ -17,14 +17,14 @@
                     @if (($entrynote->uuid_entry_note ?? '') == '')
                         {!! Form::open(['url' => 'admin/entry-note', 'method' => 'post', 'files'=>'true']) !!}
                     @else
-                        {!! Form::model($supplier, ['url'=>'admin/entry-note/'.$entrynote->uuid_entry_note, 'method' => 'PUT']) !!}    
+                        {!! Form::model($entrynote, ['url'=>'admin/entry-note/'.$entrynote->uuid_entry_note, 'method' => 'PUT']) !!}    
                     @endif
                     
                     @if (is_string($uuid_supplier))
-                    <div class="form-group">
-                        {!! Form::label('uuid_supplier', 'ID Member Supplier') !!}
-                        {!! Form::text('uuid_supplier', $uuid_supplier, ['class'=>'form-control', 'placeholder'=>'ID Supplier', 'readonly'=>true]) !!}
-                    </div>
+                        <div class="form-group">
+                            {!! Form::label('uuid_supplier', 'ID Member Supplier') !!}
+                            {!! Form::text('uuid_supplier', $uuid_supplier, ['class'=>'form-control', 'placeholder'=>'ID Supplier', 'readonly'=>true]) !!}
+                        </div>
                     @else
                         @foreach ($uuid_supplier as $item)
                             @php $list[$item->uuid_supplier] = $item->uuid_supplier.' - '.$item->name_supplier; @endphp
@@ -57,13 +57,14 @@
 
                     <div class="form-group">
                         {!! Form::label('status_entry_note', 'Status Pembayaran') !!}
-                        {!! Form::select('status_entry_note', ['L' => 'Lunas', 'K' => 'Kredit'], null, ['class'=>'form-control', 'placeholder' => 'Pilih status pembayaran', 'required'=>true]) !!}
+                        {!! Form::select('status_entry_note', ['L' => 'Lunas', 'K' => 'Hutang'], null, ['class'=>'form-control', 'placeholder' => 'Pilih status pembayaran', 'required'=>true]) !!}
                     </div>
-
+                    @if (($entrynote->uuid_entry_note ?? '') == '')
                     <div class="form-group">
                         {!! Form::label('picture_entry_note', 'Foto Nota Masuk') !!} <br>
                         {!! Form::file('picture_entry_note', ["accept"=>"image/*"]) !!}
                     </div>
+                    @endif
                     
                     <div class="form-group text-right">
                         {!! Form::submit('Simpan Nota Masuk', ['class'=>'btn btn-primary']) !!}

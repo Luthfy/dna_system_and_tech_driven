@@ -31,7 +31,7 @@ class InventoryDataTable extends DataTable
                 return "
                     <div class='row justify-content-between'>
                         <a href='/admin/inventory/$inventory->uuid_item_inventory' class='btn btn-primary btn-sm mx-1'><i class='fas fa-eye'></i></a>
-                        <a href='#' class='btn btn-success btn-sm' onclick='editForm()'><i class='fas fa-edit'></i></a>
+                        <a href='/admin/inventory/$inventory->uuid_item_inventory/edit' class='btn btn-success btn-sm' onclick='editForm()'><i class='fas fa-edit'></i></a>
                         <a href='#' class='btn btn-danger btn-sm' onclick='deleteSupplier()'><i class='fas fa-trash'></i></a>
                     </div>
                 ";
@@ -41,11 +41,22 @@ class InventoryDataTable extends DataTable
 
     public function query(Item $model)
     {
-        return $this->applyScopes(
-            $model::orderBy('nm_item_inventory', 'asc')
+        if (($this->uuid_entry_note ?? '') == '')
+        {
+            return $this->applyScopes($model::orderBy('nm_item_inventory', 'asc')
+                        ->orderBy('id_category', 'asc')
+                        ->orderBy('is_sold_out', 'asc'));
+        }
+        else
+        {
+            $uuid_entry_note = $this->uuid_entry_note;
+            return $this->applyScopes($model::query()->where('uuid_entry_note', $uuid_entry_note)
+                        ->orderBy('nm_item_inventory', 'asc')
                         ->orderBy('id_category', 'asc')
                         ->orderBy('is_sold_out', 'asc')
-        );
+                    );
+        };
+
     }
 
     public function html()

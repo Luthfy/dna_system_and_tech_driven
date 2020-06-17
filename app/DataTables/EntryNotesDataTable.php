@@ -26,7 +26,7 @@ class EntryNotesDataTable extends DataTable
                 return $entry_notes->user->name;
             })
             ->addColumn('status_entry_note', function($entry_notes){
-                return $entry_notes->status_entry_note == 'L' ? 'Lunas' : 'Hutang';
+                return $entry_notes->status_entry_note == 'L' ? '<span class="badge badge-success">Lunas</span>' : '<span class="badge badge-warning">Hutang</span>';
             })
             ->addColumn('date_entry_note', function($entry_notes){
                 return $entry_notes->date_entry_note;
@@ -42,7 +42,7 @@ class EntryNotesDataTable extends DataTable
                     "<div class='row justify-content-between'>
                         <a href='/admin/entry-note/$entry_notes->uuid_entry_note' class='btn btn-primary btn-sm mx-1'><i class='fas fa-eye'></i></a>
                         <a href='/admin/entry-note/$entry_notes->uuid_entry_note/edit' class='btn btn-success btn-sm' onclick='editForm()'><i class='fas fa-edit'></i></a>
-                        <a href='#' class='btn btn-danger btn-sm' onclick='deleteSupplier()'><i class='fas fa-trash'></i></a>
+                        <a href='#' class='btn btn-danger btn-sm' onclick=deleteEntryNote('$entry_notes->uuid_entry_note')><i class='fas fa-trash'></i></a>
                     </div>";
             })
             ->rawColumns(['status_entry_note', 'action']);

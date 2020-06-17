@@ -91,7 +91,7 @@ class EntryNotesController extends Controller
         $supplier   = Supplier::findOrFail($entry_note->uuid_supplier);
         $dt_item    = new InventoryDataTable();
 
-        return $dt_item->render('admin.entry.detail', [
+        return $dt_item->with('uuid_entry_note', $id)->render('admin.entry.detail', [
             "supplier"      => $supplier,
             "entry_note"    => $entry_note
         ]);
@@ -100,6 +100,46 @@ class EntryNotesController extends Controller
     public function edit($id)
     {
         $entry_note   = EntryNotes::findOrFail($id);
-        return view('admin.entry.form', [ 'entry_note' => $entry_note ]);
+        return view('admin.entry.form', [
+            'uuid_supplier' => $entry_note->uuid_supplier,
+            'entrynote' => $entry_note
+        ]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $store = $request->validate([
+            'uuid_supplier'     => 'required',
+            'no_entry_note'     => 'required',
+            'qty_entry_note'    => 'required|numeric',
+            'total_entry_note'  => 'required|numeric',
+            'status_entry_note' => 'required'
+        ]);
+
+        $entryNote = EntryNotes::find($id);
+        $entryNote->no_entry_note       = $request->no_entry_note;
+        $entryNote->date_entry_note     = $request->date_entry_note;
+        $entryNote->qty_entry_note      = $request->qty_entry_note;
+        $entryNote->total_entry_note    = $request->total_entry_note;
+        $entryNote->status_entry_note   = $request->status_entry_note;
+        $entryNote->uuid_supplier       = $request->uuid_supplier;
+        $entryNote->id_user             = Auth::id();
+        $entryNote->save();
+
+        return redirect('admin/entry-note/')->with('info', 'Entry Note has been updated!');
+    }
+
+    public function destroy($id)
+    {
+        $entry_note = EntryNotes::find($id);
+
+        if ($entry_note->delete())
+        {
+            return "Entry Note has been deleted!";
+        }
+        else
+        {
+            return "Entry Note has failed to delete!";
+        }
     }
 }
