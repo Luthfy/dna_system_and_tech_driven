@@ -62,22 +62,22 @@ class CategoriesDataTable extends DataTable
                   ->exportable(false)
                   ->printable(false)
                   ->width(100)
-                  ->addClass('text-center'),
+                  ->addClass('text-center align-middle'),
             Column::computed('id_category')
                 ->title('ID')
-                ->addClass('text-center'),
+                ->addClass('text-center align-middle'),
             Column::computed('name_category')
                 ->title('Kategori')
-                ->addClass('text-center'),
+                ->addClass('text-center align-middle'),
             Column::computed('id_user')
                 ->title('User')
-                ->addClass('text-center'),
+                ->addClass('text-center align-middle'),
             Column::make('created_at')
                 ->title('ditambahkan')
-                ->addClass('text-center'),
+                ->addClass('text-center align-middle'),
             Column::make('updated_at')
                 ->title('diperbarui')
-                ->addClass('text-center'),
+                ->addClass('text-center align-middle'),
         ];
     }
 

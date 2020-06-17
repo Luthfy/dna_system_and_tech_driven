@@ -45,7 +45,6 @@ class CustomersDataTable extends DataTable
                         Button::make('create'),
                         Button::make('export'),
                         Button::make('print'),
-                        Button::make('reset'),
                         Button::make('reload')
                     );
     }
@@ -53,12 +52,24 @@ class CustomersDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('DT_RowIndex')->title("No"),
-            Column::make('nm_customer')->title("Nama"),
-            Column::make('address_customer')->title("Alamat"),
-            Column::make('phone_customer')->title("No Hp"),
-            Column::make('remember_token')->title("Token"),
-            Column::make('created_at')->title("Terdaftar pada"),
+            Column::make('DT_RowIndex')
+                    ->title("No")
+                    ->addClass("text-center align-middle"),
+            Column::make('nm_customer')
+                    ->title("Nama")
+                    ->addClass("text-center align-middle"),
+            Column::make('address_customer')
+                    ->title("Alamat")
+                    ->addClass("text-center align-middle"),
+            Column::make('phone_customer')
+                    ->title("No Hp")
+                    ->addClass("text-center align-middle"),
+            Column::make('remember_token')
+                    ->title("Token")
+                    ->addClass("text-center align-middle"),
+            Column::make('created_at')
+                    ->title("Terdaftar pada")
+                    ->addClass("text-center align-middle"),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
