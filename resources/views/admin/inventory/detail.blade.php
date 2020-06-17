@@ -16,7 +16,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row mb-3">
-                        <img src="{{ asset(($item->picture_item_inventory == '' || $item->picture_item_inventory == null) ? 'images/entry_notes_dummy.png' : 'storage/item_inventory/'.$item->picture_item_inventory ) }}" alt="item picture" class="mt-1 round dummy">
+                        <img src="{{ asset(($item->picture_item_inventory == '' || $item->picture_item_inventory == null) ? 'images/entry_notes_dummy.png' : asset('storage/item_inventory/'.$item->picture_item_inventory) ) }}" alt="item picture" class="mt-1 round dummy">
                         <div class="col ml-3">
                             <table class="table mb-0">
                                 <tr>

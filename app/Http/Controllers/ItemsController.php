@@ -55,8 +55,6 @@ class ItemsController extends Controller
             'id_category'           => 'required'
         ]);
 
-        $filename = null;
-
         if ($request->hasFile('picture_item_inventory'))
         {
             $image      = $request->file('picture_item_inventory');
