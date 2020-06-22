@@ -25,7 +25,7 @@ class NewTransactionNotify extends Notification
 
     public function toTelegram($notifiable)
     {
-        $message = "ID Nota : ".$notifiable->uuid_exit_note."\nPembeli : ".$notifiable->customer->nm_customer."\nTotal Pembelian : ".$notifiable->total_exit_note;
+        $message = "ID Nota : ".$notifiable->uuid_exit_note."\nPembeli : ".$notifiable->customer->nm_customer."\nMetode Pembayaran : ".$notifiable->status_exit_note."\nTotal Pembelian : ".$notifiable->total_exit_note;
 
         return TelegramMessage::create()
             ->to("619801707")

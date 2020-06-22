@@ -151,31 +151,40 @@
 
             event.preventDefault();
 
-            let data = {
-                "_token"            : "{{ csrf_token() }}",
-                "uuid_exit_note"    : $("#uuid_exit_note").val(),
-                "nm_customer"       : ($("#nm_customer").val().split("-")[1] == undefined ? $("#nm_customer").val().split("-")[0] : $("#nm_customer").val().split("-")[1]).trim(),
-                "date_exit_note"    : $("#date_exit_note").val(),
-                "status_exit_note"  : $("#status_exit_note").val(),
-                "total_exit_note"   : $("#total_exit_note").val(),
-                "detail_exit_note"  : JSON.stringify(carts)
+            if(carts.length < 1 || carts == undefined)
+            {
+                alert("Barang tidak ada yang dipilih")
+            }
+            else
+            {
+                let data = {
+                    "_token"            : "{{ csrf_token() }}",
+                    "uuid_exit_note"    : $("#uuid_exit_note").val(),
+                    "nm_customer"       : ($("#nm_customer").val().split("-")[1] == undefined ? $("#nm_customer").val().split("-")[0] : $("#nm_customer").val().split("-")[1]).trim(),
+                    "date_exit_note"    : $("#date_exit_note").val(),
+                    "status_exit_note"  : $("#status_exit_note").val(),
+                    "total_exit_note"   : $("#total_exit_note").val(),
+                    "detail_exit_note"  : JSON.stringify(carts)
+                }
+
+                $.ajax({
+                    url : "{{ route('transaction.store') }}",
+                    type : "POST",
+                    data : data,
+                    success : function (response, statusCode) {
+                        if (statusCode = 'success')
+                        {
+                            window.open('../generate-pdf/exit_note/'+data.uuid_exit_note, '_blank');
+                            location.reload();
+                        }
+                    },
+                    error : function (response) {
+
+                    }
+                })
             }
 
-            $.ajax({
-                url : "{{ route('transaction.store') }}",
-                type : "POST",
-                data : data,
-                success : function (response, statusCode) {
-                    if (statusCode = 'success')
-                    {
-                        window.open('../generate-pdf/exit_note/'+data.uuid_exit_note, '_blank');
-                        // location.reload();
-                    }
-                },
-                error : function (response) {
-
-                }
-            })
+            
         })
     });
 
