@@ -62,7 +62,7 @@ class ItemsDataTable extends DataTable
                 ->title('Harga Barang')
                 ->addClass('text-center'),
             Column::make('stock')
-                ->title('Stok Barang')
+                ->title('Sisa Stok')
                 ->searchable(false)
                 ->addClass('text-center'),
         ];
