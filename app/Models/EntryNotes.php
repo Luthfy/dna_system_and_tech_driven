@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class EntryNotes extends Model
 {
+
     protected $primaryKey = 'uuid_entry_note';
 
     public $incrementing = false;

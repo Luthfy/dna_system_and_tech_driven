@@ -169,6 +169,7 @@
                     if (statusCode = 'success')
                     {
                         window.open('../generate-pdf/exit_note/'+data.uuid_exit_note, '_blank');
+                        // location.reload();
                     }
                 },
                 error : function (response) {

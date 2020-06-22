@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class ExitNote extends Model
 {
+    use Notifiable;
+    
     protected $primaryKey = 'uuid_exit_note';
 
     public $incrementing = false;
@@ -28,4 +31,6 @@ class ExitNote extends Model
     {
         return $this->hasOne('App\User', 'id', 'id_user');
     }
+
+
 }

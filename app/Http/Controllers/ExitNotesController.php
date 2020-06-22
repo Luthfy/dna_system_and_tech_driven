@@ -6,12 +6,14 @@ use App\Models\ExitNote;
 use App\Models\DetailExitNote;
 use App\Models\Customer;
 use App\Models\Item;
+use App\Notifications\NewTransactionNotify;
 use App\DataTables\ExitNotesDataTable;
 use Illuminate\Http\Request;
 use Ramsey\Uuid\Uuid;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Illuminate\Notifications\Notifiable;
 
 class ExitNotesController extends Controller
 {
@@ -67,9 +69,8 @@ class ExitNotesController extends Controller
             "id_user"           => Auth::id()
         ];
 
-        $insertExitNote = ExitNote::create($dataExitNote);
-
-        $detail_exit_note = json_decode($request->detail_exit_note);
+        $insertExitNote     = ExitNote::create($dataExitNote);
+        $detail_exit_note   = json_decode($request->detail_exit_note);
 
         $uuidItem = array();
         foreach ($detail_exit_note as $key => $item)
@@ -94,9 +95,12 @@ class ExitNotesController extends Controller
             $i->save();
         }
 
+        $ExitNote = ExitNote::find($dataExitNote["uuid_exit_note"]);
+        $ExitNote->notify(new NewTransactionNotify());
+
         return response()->json([
             "status" => "success",
-            "message" => ""
+            "message" => $ExitNote
         ], 201);
     }
 
