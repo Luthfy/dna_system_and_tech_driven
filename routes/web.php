@@ -66,8 +66,3 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('generate-pdf/exit_note/{id}', 'PDFController@generate_exit_note')->name('pdf.exitnote');
     
 });
-
-Route::get('/setwebhook', function () {
-	$response = Telegram::setWebhook(['url' => env('APP_URL').'/42yUojv1YQPOssPEpn5i3q6vjdhh7hl7djVWDIAVhFDRMAwZ1tj0Og2v4PWyj4PZ/webhook']);
-	dd($response);
-});
