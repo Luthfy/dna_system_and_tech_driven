@@ -19,8 +19,18 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/gqIG3BvtBVZ0yHF2vxmnl3WKkZWqTP1d4ebDpQJCGcBVeDKNbKV9ypyOYqNXGh4z/webhook', function() {
-    // $updates = Telegram::getUpdates();
-    // return response()->json($updates);
+// https://dna.saijaansmartdev.com/api/1245537120:AAGZ4ANo38czRn-K8OSUhY9bYBP15S8z18o/webhook
+
+
+Route::post('/bot/getupdates', function() {
+    $updates = Telegram::getUpdates();
+    return (json_encode($updates));
 });
+
+Route::post('/bot', function() {
+    $response = Telegram::getMe();
+    return response()->json($response, 200);
+});
+
+
 

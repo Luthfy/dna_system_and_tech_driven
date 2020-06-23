@@ -66,3 +66,4 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('generate-pdf/exit_note/{id}', 'PDFController@generate_exit_note')->name('pdf.exitnote');
     
 });
+
