@@ -17,7 +17,7 @@
   
               <div class="info-box-content">
                 <span class="info-box-text">Supplier</span>
-                <span class="info-box-number">25</span>
+                <span class="info-box-number">{{ $total_supplier ?? 0 }} supplier</span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -29,7 +29,7 @@
   
               <div class="info-box-content">
                 <span class="info-box-text">Produk</span>
-                <span class="info-box-number">90 / 32 </span>
+                <span class="info-box-number">{{ $total_product ?? 0 }} ({{ $total_sold_out ?? 0 }} terjual)</span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -45,7 +45,7 @@
   
               <div class="info-box-content">
                 <span class="info-box-text">Sales ({{ \Carbon\Carbon::now()->format('yy-m-d') }})</span>
-                <span class="info-box-number">Rp. 0000 / 702 </span>
+                <span class="info-box-number"></span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -58,7 +58,7 @@
   
               <div class="info-box-content">
                 <span class="info-box-text">Customer Registered</span>
-                <span class="info-box-number">2,000</span>
+                <span class="info-box-number">{{ $total_customer ?? 0 }} member</span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -68,6 +68,7 @@
         
     </div>
 
+    
   
 @stop
 
